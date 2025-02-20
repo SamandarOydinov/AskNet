@@ -1,26 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAnswerOptionDto } from './dto/create-answer_option.dto';
 import { UpdateAnswerOptionDto } from './dto/update-answer_option.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { AnswerOption } from './schemas/answer_option.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class AnswerOptionsService {
+  constructor(@InjectModel(AnswerOption.name) private readonly answerOptionModel: Model<AnswerOption>){}
   create(createAnswerOptionDto: CreateAnswerOptionDto) {
-    return 'This action adds a new answerOption';
+    return this.answerOptionModel.create(createAnswerOptionDto)
   }
 
   findAll() {
-    return `This action returns all answerOptions`;
+    return this.answerOptionModel.find()
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} answerOption`;
+    return this.answerOptionModel.findById(id)
   }
 
   update(id: number, updateAnswerOptionDto: UpdateAnswerOptionDto) {
-    return `This action updates a #${id} answerOption`;
+    return this.answerOptionModel.findByIdAndUpdate(id, updateAnswerOptionDto)
   }
 
   remove(id: number) {
-    return `This action removes a #${id} answerOption`;
+    return this.answerOptionModel.findByIdAndDelete(id)
   }
 }

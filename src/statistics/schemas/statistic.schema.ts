@@ -7,7 +7,7 @@ export type StatisticsDocument = HydratedDocument<Statistics>;
 @Schema()
 export class Statistics {
   @Prop({ type: [{ type: mongoose.Schema.ObjectId, ref: "Survey" }] })
-  surveys: Survey[];
+  survey: Survey;
 
   @Prop()
   total_responses: bigint;

@@ -6,7 +6,8 @@ import { Owner, OwnerSchema } from './schemas/owner.schema';
 import { Cat, CatSchema } from '../cat/schemas/cat.schema';
 
 @Module({
-  imports: [MongooseModule.forFeature([{
+  imports: [MongooseModule.forFeature([
+    {
       name: Owner.name,
       schema: OwnerSchema
     },

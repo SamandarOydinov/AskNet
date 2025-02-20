@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { CreateResponseDto } from './dto/create-response.dto';
 import { UpdateResponseDto } from './dto/update-response.dto';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class ResponsesService {
+  constructor(
+    @InjectModel(Response.name)
+    private readonly responseModel: Model<Response>,
+  ) {}
   create(createResponseDto: CreateResponseDto) {
-    return 'This action adds a new response';
+    return this.responseModel.create(createResponseDto);
   }
 
   findAll() {
-    return `This action returns all responses`;
+    return this.responseModel.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} response`;
+    return this.responseModel.findById(id);
   }
 
   update(id: number, updateResponseDto: UpdateResponseDto) {
-    return `This action updates a #${id} response`;
+    return this.responseModel.findByIdAndUpdate(id, updateResponseDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} response`;
+    return this.responseModel.findByIdAndDelete(id);
   }
 }

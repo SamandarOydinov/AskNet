@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSurveyStatusDto } from './dto/create-survey_status.dto';
 import { UpdateSurveyStatusDto } from './dto/update-survey_status.dto';
+import { SurveyStatus } from './schemas/survey_status.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class SurveyStatusService {
+  constructor(
+    @InjectModel(SurveyStatus.name)
+    private readonly surveyStatusModel: Model<SurveyStatus>,
+  ) {}
   create(createSurveyStatusDto: CreateSurveyStatusDto) {
-    return 'This action adds a new surveyStatus';
+    return this.surveyStatusModel.create(createSurveyStatusDto);
   }
 
   findAll() {
-    return `This action returns all surveyStatus`;
+    return this.surveyStatusModel.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} surveyStatus`;
+    return this.surveyStatusModel.findById(id);
   }
 
   update(id: number, updateSurveyStatusDto: UpdateSurveyStatusDto) {
-    return `This action updates a #${id} surveyStatus`;
+    return this.surveyStatusModel.findByIdAndUpdate(id, updateSurveyStatusDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} surveyStatus`;
+    return this.surveyStatusModel.findByIdAndDelete(id);
   }
 }
