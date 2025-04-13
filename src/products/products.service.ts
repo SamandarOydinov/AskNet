@@ -8,25 +8,25 @@ import { Model } from 'mongoose';
 @Injectable()
 export class ProductsService {
   constructor(
-    @InjectModel(Product.name) private readonly surveyModel: Model<Product>,
+    @InjectModel(Product.name) private readonly productModel: Model<Product>,
   ) {}
   create(createProductDto: CreateProductDto) {
-    return this.surveyModel.create(createProductDto);
+    return this.productModel.create(createProductDto);
   }
 
   findAll() {
-    return this.surveyModel.find().populate('Client');
+    return this.productModel.find().populate('Client');
   }
 
   findOne(id: number) {
-    return this.surveyModel.findById(id);
+    return this.productModel.findById(id);
   }
 
   update(id: number, updateProductDto: UpdateProductDto) {
-    return this.surveyModel.findByIdAndUpdate(id, updateProductDto);
+    return this.productModel.findByIdAndUpdate(id, updateProductDto);
   }
 
   remove(id: number) {
-    return this.surveyModel.findByIdAndDelete(id);
+    return this.productModel.findByIdAndDelete(id);
   }
 }

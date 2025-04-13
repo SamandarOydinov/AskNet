@@ -6,6 +6,7 @@
 /docker-compose.yml
 /Dockerfile
 
+
 # Logs
 logs
 *.log
@@ -40,6 +41,7 @@ lerna-debug.log*
 
 # dotenv environment variable files
 .env
+.dockerignore
 .env.development.local
 .env.test.local
 .env.production.local
