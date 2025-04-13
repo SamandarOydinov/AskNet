@@ -16,6 +16,7 @@ import { ResponsesModule } from './responses/responses.module';
 import { AnswerOptionsModule } from './answer_options/answer_options.module';
 import { SurveyStatusModule } from './survey_status/survey_status.module';
 import { PaymentsModule } from './payments/payments.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { PaymentsModule } from './payments/payments.module';
     AnswerOptionsModule,
     SurveyStatusModule,
     PaymentsModule,
+    ProductsModule
   ],
   controllers: [],
   providers: [],
